@@ -42,13 +42,13 @@ public class ReflectLayout extends FrameLayout {
                 LayoutParams layoutParams = (LayoutParams) params;
                 boolean reflect = layoutParams.reflectAble;
                 float reflectHeight = layoutParams.reflectHeight;
+                float reflectSpace = layoutParams.reflectSpace;
 
                 if (reflect) {
                     Bitmap source = ViewUtil.getBitmapByView(childAt);
                     Bitmap shadow = BitmapUtil.createBitmapShadow(source, (int) reflectHeight);
-                    canvas.drawBitmap(shadow, childAt.getLeft(), childAt.getBottom(), null);
+                    canvas.drawBitmap(shadow, childAt.getLeft() + childAt.getTranslationX(), childAt.getBottom() + childAt.getTranslationY() + reflectSpace, null);
                 }
-                Log.d(TAG, "child " + i + ": reflect = " + reflect + ", reflectHeight = " + reflectHeight);
             }
         }
     }
@@ -71,6 +71,7 @@ public class ReflectLayout extends FrameLayout {
     public static class LayoutParams extends FrameLayout.LayoutParams {
         public boolean reflectAble = false;
         public float reflectHeight = 0;
+        private float reflectSpace = 0;
 
         public LayoutParams(@NonNull Context c, @Nullable AttributeSet attrs) {
             super(c, attrs);
@@ -78,6 +79,7 @@ public class ReflectLayout extends FrameLayout {
             final TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ReflectLayout_Layout);
             reflectAble = a.getBoolean(R.styleable.ReflectLayout_Layout_reflect, false);
             reflectHeight = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_height, 0);
+            reflectSpace = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_space, 0);
             a.recycle();
         }
 
