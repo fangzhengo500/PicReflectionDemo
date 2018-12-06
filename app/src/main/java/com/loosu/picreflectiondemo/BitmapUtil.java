@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
+import android.support.annotation.Nullable;
 
 public class BitmapUtil {
     public static Bitmap createBitmapShadow(Bitmap sourceBmp, int shadowHeight) {
@@ -23,11 +24,16 @@ public class BitmapUtil {
      * @param endColor     endColor
      * @return 阴影图片
      */
+    @Nullable
     public static Bitmap createBitmapShadow(Bitmap sourceBmp, int shadowHeight, int startColor, int endColor) {
         int x = 0;
-        int y = 0;
+        int y = Math.max(0, Math.min(sourceBmp.getHeight() - shadowHeight, sourceBmp.getHeight())); // 0 <= y <= bmp.getHeight;
         int width = sourceBmp.getWidth();
-        int height = shadowHeight;
+        int height = Math.min(shadowHeight, sourceBmp.getHeight() - y);
+
+        if (height <= 0){
+            return null;
+        }
 
         Matrix matrix = new Matrix();
         matrix.setScale(1, -1);  // 矩阵 matrix.setScale(1,-1) 上下翻转.

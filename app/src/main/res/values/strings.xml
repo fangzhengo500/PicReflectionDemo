@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PicReflectionDemo</string>
+    <string name="shadow_height_label">阴影高度</string>
 </resources>
