@@ -4,7 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -63,6 +67,12 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
     }
 
     private void initView(Bundle savedInstanceState) {
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mLayoutDrawer, 0, 0);
+        mLayoutDrawer.addDrawerListener(toggle);
+        toggle.syncState();
+
         mIvSource.post(new Runnable() {
             @Override
             public void run() {
@@ -163,4 +173,20 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
             return false;
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (mLayoutDrawer.isDrawerOpen(Gravity.END)) {
+                    mLayoutDrawer.closeDrawers();
+                } else {
+                    mLayoutDrawer.openDrawer(Gravity.END);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
 }

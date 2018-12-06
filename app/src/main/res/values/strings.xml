@@ -8,4 +8,5 @@
     <string name="shadow_height_label">Shadow Height</string>
     <string name="shadow_start_alpha_label">Start Alpha</string>
     <string name="shadow_end_alpha_label">End Alpha</string>
+    <string name="shadow_space">Space</string>
 </resources>

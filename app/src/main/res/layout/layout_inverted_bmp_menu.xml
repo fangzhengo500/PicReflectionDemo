@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:singleLine="true"
-            android:text="@string/shadow_end_alpha_label"
+            android:text="@string/shadow_space"
             android:textColor="@color/text_color_width"
             android:textSize="16sp" />
 
