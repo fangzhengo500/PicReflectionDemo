@@ -5,8 +5,10 @@
     android:layout_height="match_parent"
     android:background="#70000000"
     android:clickable="true"
+    android:orientation="vertical"
     tools:showIn="@layout/activity_main">
 
+    <!-- shadow height-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,6 +36,78 @@
 
         <TextView
             android:id="@+id/tv_shadow_height"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/text_color_width" />
+    </LinearLayout>
+
+    <!-- start alpha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:singleLine="true"
+            android:text="@string/shadow_start_alpha_label"
+            android:textColor="@color/text_color_width"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seek_start_alpha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:max="255"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <TextView
+            android:id="@+id/tv_start_alpha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/text_color_width" />
+    </LinearLayout>
+
+    <!-- end alpha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:singleLine="true"
+            android:text="@string/shadow_end_alpha_label"
+            android:textColor="@color/text_color_width"
+            android:textSize="16sp" />
+
+        <SeekBar
+            android:id="@+id/seek_end_alpha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:max="255"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
+
+        <TextView
+            android:id="@+id/tv_end_alpha"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
