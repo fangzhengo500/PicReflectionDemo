@@ -37,17 +37,37 @@ public class ReflectLayout extends FrameLayout {
         super.onDraw(canvas);
         for (int i = 0; i < getChildCount(); i++) {
             View childAt = getChildAt(i);
+            if (childAt.getVisibility() != View.VISIBLE) {
+                continue;
+            }
+
             ViewGroup.LayoutParams params = childAt.getLayoutParams();
             if (params instanceof LayoutParams) {
                 LayoutParams layoutParams = (LayoutParams) params;
-                boolean reflect = layoutParams.reflectAble;
-                float reflectHeight = layoutParams.reflectHeight;
-                float reflectSpace = layoutParams.reflectSpace;
+                boolean reflect = layoutParams.reflectAble;         // 开启阴影效果
+                float reflectHeight = layoutParams.reflectHeight;   // 阴影高度
+                float reflectSpace = layoutParams.reflectSpace;     // 阴影间隔
+
+                float viewLeft = childAt.getLeft() + childAt.getTranslationX();         // view 的视图位置 left
+                float viewBottom = childAt.getBottom() + childAt.getTranslationY();     // view 的视图位置 bottom
 
                 if (reflect) {
+                    // 启用阴影效果
+
+                    // 计算实际的阴影高度
+                    int shadowHeight = (int) reflectHeight;
+                    if (reflectHeight == LayoutParams.MATCH_PARENT) {
+                        shadowHeight = (int) (getHeight() - getPaddingBottom() - (viewBottom + reflectSpace));
+                    }
+
+                    // 绘制阴影效果
                     Bitmap source = ViewUtil.getBitmapByView(childAt);
-                    Bitmap shadow = BitmapUtil.createBitmapShadow(source, (int) reflectHeight);
-                    canvas.drawBitmap(shadow, childAt.getLeft() + childAt.getTranslationX(), childAt.getBottom() + childAt.getTranslationY() + reflectSpace, null);
+                    Bitmap shadow = BitmapUtil.createBitmapShadow(source, shadowHeight);
+                    if (shadow != null) {
+                        canvas.drawBitmap(shadow, viewLeft, viewBottom + reflectSpace, null);
+                    }
+                } else {
+                    // do nothing
                 }
             }
         }
@@ -78,7 +98,8 @@ public class ReflectLayout extends FrameLayout {
 
             final TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ReflectLayout_Layout);
             reflectAble = a.getBoolean(R.styleable.ReflectLayout_Layout_reflect, false);
-            reflectHeight = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_height, 0);
+            reflectHeight = a.getLayoutDimension(R.styleable.ReflectLayout_Layout_reflect_height, "reflect_height");
+            //reflectHeight = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_height, MATCH_PARENT);
             reflectSpace = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_space, 0);
             a.recycle();
         }
