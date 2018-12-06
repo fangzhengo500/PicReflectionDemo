@@ -2,7 +2,9 @@
 <resources>
     <declare-styleable name="ReflectLayout_Layout">
         <attr name="reflect" format="boolean" />
-        <attr name="reflect_height" format="reference|dimension" />
+        <attr name="reflect_height" format="reference|dimension">
+            <flag name="match_parent" value="200"/>
+        </attr>
         <attr name="reflect_space" format="reference|dimension" />
     </declare-styleable>
 </resources>

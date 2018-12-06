@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.loosu.picreflectiondemo.R;
+import com.loosu.picreflectiondemo.ui.fragment.GalleryFragment;
 import com.loosu.picreflectiondemo.ui.fragment.ReflectLayoutFragment;
 
 public class ReflectLayoutActivity extends AppCompatActivity {
@@ -27,6 +28,7 @@ public class ReflectLayoutActivity extends AppCompatActivity {
 
         private Fragment[] mFragments = {
                 new ReflectLayoutFragment(),
+                new GalleryFragment(),
         };
 
         public MyAdapter(FragmentManager fm) {

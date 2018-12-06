@@ -1,5 +1,6 @@
 package com.loosu.picreflectiondemo.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -7,6 +8,18 @@ import android.view.View;
 public class ViewUtil {
     private ViewUtil() {
         // util no instance.
+    }
+
+    /**
+     * dp -> px
+     *
+     * @param ctx context
+     * @param dp  value dp
+     * @return value px
+     */
+    public static int dp2px(Context ctx, int dp) {
+        float scale = ctx.getApplicationContext().getResources().getDisplayMetrics().density;
+        return (int) (dp * scale + 0.5f);
     }
 
     /**
@@ -28,4 +41,5 @@ public class ViewUtil {
         }
         return result;
     }
+
 }
