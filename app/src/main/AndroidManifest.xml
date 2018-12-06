@@ -20,6 +20,8 @@
         </activity>
 
         <activity android:name=".ShadowBitmapActivity" />
+
+        <activity android:name=".InvertedBitmapActivity" />
     </application>
 
 </manifest>

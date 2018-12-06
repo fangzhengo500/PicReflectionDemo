@@ -1,4 +1,4 @@
-package com.loosu.picreflectiondemo;
+package com.loosu.picreflectiondemo.utils;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,12 +13,30 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 public class BitmapUtil {
+    public static Bitmap createInvertedBitmap(Bitmap sourceBmp, int shadowHeight) {
+        return createInvertedBitmap(sourceBmp, shadowHeight, 255, 0);
+    }
+
+    public static Bitmap createInvertedBitmap(Bitmap sourceBmp, int shadowHeight, int startAlpha, int endAlpha) {
+        Bitmap result = null;
+        Bitmap shadow = createBitmapShadow(sourceBmp, shadowHeight, startAlpha, endAlpha);
+        if (shadow != null) {
+            result = Bitmap.createBitmap(sourceBmp.getWidth(), sourceBmp.getHeight() + shadow.getHeight(), Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(result);
+            canvas.drawBitmap(sourceBmp, 0, 0, null);
+            canvas.drawBitmap(shadow, 0, sourceBmp.getHeight(), null);
+        } else {
+            result = sourceBmp.copy(Bitmap.Config.ARGB_8888, false);
+        }
+        return result;
+    }
+
     public static Bitmap createBitmapShadow(Bitmap sourceBmp, int shadowHeight) {
         return createBitmapShadow(sourceBmp, shadowHeight, 255, 0);
     }
 
     /**
-     * 创建阴影图片
+     * 创建图片的阴影
      *
      * @param sourceBmp    原图
      * @param shadowHeight 阴影高度

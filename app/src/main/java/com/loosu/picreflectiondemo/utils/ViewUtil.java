@@ -1,4 +1,4 @@
-package com.loosu.picreflectiondemo;
+package com.loosu.picreflectiondemo.utils;
 
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;

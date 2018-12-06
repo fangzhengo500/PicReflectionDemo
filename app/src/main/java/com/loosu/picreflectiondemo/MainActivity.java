@@ -19,4 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ShadowBitmapActivity.class);
         startActivity(intent);
     }
+
+    public void onClickInvertedBmp(View view) {
+        Intent intent = new Intent(this, InvertedBitmapActivity.class);
+        startActivity(intent);
+    }
 }

@@ -1,6 +1,7 @@
 package com.loosu.picreflectiondemo;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -13,14 +14,13 @@ import android.widget.TextView;
 import com.loosu.picreflectiondemo.utils.BitmapUtil;
 import com.loosu.picreflectiondemo.utils.ViewUtil;
 
-public class ShadowBitmapActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
-    private static final String TAG = "ShadowBitmapActivity";
+public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
+    private static final String TAG = "InvertedBitmapActivity";
 
     private DrawerLayout mLayoutDrawer;
 
     // main content
     private ImageView mIvSource;
-    private ImageView mIvShadow;
 
     // main menu
     private SeekBar mSeekShadowHeight;
@@ -33,7 +33,7 @@ public class ShadowBitmapActivity extends AppCompatActivity implements SeekBar.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shadow_bmp);
+        setContentView(R.layout.activity_inverted_bmp);
         findView(savedInstanceState);
         initView(savedInstanceState);
         initListener(savedInstanceState);
@@ -45,7 +45,6 @@ public class ShadowBitmapActivity extends AppCompatActivity implements SeekBar.O
 
         // main content
         mIvSource = findViewById(R.id.iv_source);
-        mIvShadow = findViewById(R.id.iv_shadow);
 
         // main menu
         mSeekShadowHeight = findViewById(R.id.seek_shadow_height);
@@ -80,9 +79,9 @@ public class ShadowBitmapActivity extends AppCompatActivity implements SeekBar.O
     }
 
     private void updateImageShadow(int shadowHeight, int startAlpha, int endAlpha) {
-        Bitmap source = ViewUtil.getBitmapByView(mIvSource);
-        Bitmap shadow = BitmapUtil.createBitmapShadow(source, shadowHeight, startAlpha, endAlpha);
-        mIvShadow.setImageBitmap(shadow);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.pic2);
+        Bitmap invertedBmp = BitmapUtil.createInvertedBitmap(bitmap, shadowHeight, startAlpha, endAlpha);
+        mIvSource.setImageBitmap(invertedBmp);
     }
 
     private void initListener(Bundle savedInstanceState) {

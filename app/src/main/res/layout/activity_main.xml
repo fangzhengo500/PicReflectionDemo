@@ -17,4 +17,18 @@
             android:text="@string/shadow_bmp"
             android:textSize="18sp" />
     </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:onClick="onClickInvertedBmp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/inverted_bmp"
+            android:textSize="18sp" />
+    </android.support.v7.widget.CardView>
 </LinearLayout>
