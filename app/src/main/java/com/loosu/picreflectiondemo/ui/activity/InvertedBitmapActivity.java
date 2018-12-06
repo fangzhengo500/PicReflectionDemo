@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.loosu.picreflectiondemo.R;
 import com.loosu.picreflectiondemo.utils.BitmapUtil;
-import com.loosu.picreflectiondemo.utils.ViewUtil;
 
 public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
     private static final String TAG = "InvertedBitmapActivity";
@@ -30,6 +29,8 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
     private TextView mTvStartAlpha;
     private SeekBar mSeekEndAlpha;
     private TextView mTvEndAlpha;
+    private SeekBar mSeekSpace;
+    private TextView mTvSpace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,9 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
 
         mSeekEndAlpha = findViewById(R.id.seek_end_alpha);
         mTvEndAlpha = findViewById(R.id.tv_end_alpha);
+
+        mSeekSpace = findViewById(R.id.seek_space);
+        mTvSpace = findViewById(R.id.tv_space);
     }
 
     private void initView(Bundle savedInstanceState) {
@@ -65,7 +69,8 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
                 int shadowHeight = mIvSource.getHeight();
                 int startAlpha = 255;
                 int endAlpha = 0;
-                updateImageShadow(shadowHeight, startAlpha, endAlpha);
+                float space = 0;
+                updateImageShadow(shadowHeight, startAlpha, endAlpha, space);
 
                 mSeekShadowHeight.setProgress(shadowHeight);
                 mTvShadowHeight.setText(String.valueOf(shadowHeight));
@@ -75,13 +80,16 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
 
                 mSeekEndAlpha.setProgress(endAlpha);
                 mTvEndAlpha.setText(String.valueOf(endAlpha));
+
+                mSeekSpace.setProgress((int) (space + mSeekSpace.getMax() / 2));
+                mTvSpace.setText(String.valueOf(space));
             }
         });
     }
 
-    private void updateImageShadow(int shadowHeight, int startAlpha, int endAlpha) {
+    private void updateImageShadow(int shadowHeight, int startAlpha, int endAlpha, float space) {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.pic2);
-        Bitmap invertedBmp = BitmapUtil.createInvertedBitmap(bitmap, shadowHeight, startAlpha, endAlpha);
+        Bitmap invertedBmp = BitmapUtil.createInvertedBitmap(bitmap, shadowHeight, startAlpha, endAlpha, space);
         mIvSource.setImageBitmap(invertedBmp);
     }
 
@@ -92,23 +100,29 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
         mSeekShadowHeight.setOnSeekBarChangeListener(this);
         mSeekStartAlpha.setOnSeekBarChangeListener(this);
         mSeekEndAlpha.setOnSeekBarChangeListener(this);
-
+        mSeekSpace.setOnSeekBarChangeListener(this);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         switch (seekBar.getId()) {
             case R.id.seek_shadow_height:
-                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress());
+                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress(), mSeekSpace.getProgress() - mSeekSpace.getMax() / 2);
                 mTvShadowHeight.setText(String.valueOf(progress));
                 break;
+
             case R.id.seek_start_alpha:
-                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress());
+                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress(), mSeekSpace.getProgress() - mSeekSpace.getMax() / 2);
                 mTvStartAlpha.setText(String.valueOf(progress));
                 break;
+
             case R.id.seek_end_alpha:
-                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress());
+                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress(), mSeekSpace.getProgress() - mSeekSpace.getMax() / 2);
                 mTvEndAlpha.setText(String.valueOf(progress));
+                break;
+            case R.id.seek_space:
+                updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress(), mSeekSpace.getProgress() - mSeekSpace.getMax() / 2);
+                mTvSpace.setText(String.valueOf(mSeekSpace.getProgress() - mSeekSpace.getMax() / 2));
                 break;
         }
     }

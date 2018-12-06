@@ -18,13 +18,17 @@ public class BitmapUtil {
     }
 
     public static Bitmap createInvertedBitmap(Bitmap sourceBmp, int shadowHeight, int startAlpha, int endAlpha) {
+        return createInvertedBitmap(sourceBmp, shadowHeight, 255, 0, 0);
+    }
+
+    public static Bitmap createInvertedBitmap(Bitmap sourceBmp, int shadowHeight, int startAlpha, int endAlpha, float space) {
         Bitmap result = null;
         Bitmap shadow = createBitmapShadow(sourceBmp, shadowHeight, startAlpha, endAlpha);
         if (shadow != null) {
-            result = Bitmap.createBitmap(sourceBmp.getWidth(), sourceBmp.getHeight() + shadow.getHeight(), Bitmap.Config.ARGB_8888);
+            result = Bitmap.createBitmap(sourceBmp.getWidth(), (int) (sourceBmp.getHeight() + shadow.getHeight() + space), Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(result);
+            canvas.drawBitmap(shadow, 0, sourceBmp.getHeight() + space, null);
             canvas.drawBitmap(sourceBmp, 0, 0, null);
-            canvas.drawBitmap(shadow, 0, sourceBmp.getHeight(), null);
         } else {
             result = sourceBmp.copy(Bitmap.Config.ARGB_8888, false);
         }
