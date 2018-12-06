@@ -98,8 +98,15 @@ public class ReflectLayout extends FrameLayout {
 
             final TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ReflectLayout_Layout);
             reflectAble = a.getBoolean(R.styleable.ReflectLayout_Layout_reflect, false);
-            reflectHeight = a.getLayoutDimension(R.styleable.ReflectLayout_Layout_reflect_height, "reflect_height");
-            //reflectHeight = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_height, MATCH_PARENT);
+
+            /**
+             *  <attr name="reflect_height" format="reference|dimension">
+             *      <flag name="match_parent" value="-1" />
+             *  </attr>
+             *  因为 match_parent = -1， 为 integer, 直接使用 TypedArray.getDimension() 会crash.
+             *  这里使用 TypedArray.getLayoutDimension() 获取 reflectHeight.
+             */
+            reflectHeight = a.getLayoutDimension(R.styleable.ReflectLayout_Layout_reflect_height, MATCH_PARENT);
             reflectSpace = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_space, 0);
             a.recycle();
         }
