@@ -6,7 +6,7 @@
     android:background="#70000000"
     android:clickable="true"
     android:orientation="vertical"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_shadow_bmp">
 
     <!-- shadow height-->
     <LinearLayout

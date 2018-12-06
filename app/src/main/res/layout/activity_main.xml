@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/layout_drawer"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <include layout="@layout/layout_main_content" />
+    <android.support.v7.widget.CardView
+        android:onClick="onClickShadowBmp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="5dp">
 
-    <include
-        layout="@layout/layout_main_menu"
-        android:layout_width="300dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end" />
-</android.support.v4.widget.DrawerLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/shadow_bmp"
+            android:textSize="18sp" />
+    </android.support.v7.widget.CardView>
+</LinearLayout>
