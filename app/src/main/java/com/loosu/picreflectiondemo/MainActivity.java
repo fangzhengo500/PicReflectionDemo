@@ -1,36 +1,38 @@
 package com.loosu.picreflectiondemo;
 
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
 
     private ImageView mIvSource;
-    private View mLayoutSourcePanel;
+    private ImageView mIvShadow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         findView(savedInstanceState);
+        initView(savedInstanceState);
     }
+
 
     private void findView(Bundle savedInstanceState) {
         mIvSource = findViewById(R.id.iv_source);
-        mLayoutSourcePanel = findViewById(R.id.layout_source_panel);
+        mIvShadow = findViewById(R.id.iv_shadow);
     }
 
-    public void onClick(View view) {
-        View souceView = findViewById(R.id.layout_root);
-        souceView.setDrawingCacheEnabled(true);
-        Bitmap drawingCache = souceView.getDrawingCache();
-        Bitmap bitmap = drawingCache.copy(Bitmap.Config.ARGB_8888, true);
-        souceView.setDrawingCacheEnabled(false);
-
-        mIvSource.setImageBitmap(bitmap);
+    private void initView(Bundle savedInstanceState) {
+        mIvSource.post(new Runnable() {
+            @Override
+            public void run() {
+                Bitmap source = ViewUtil.getBitmapByView(mIvSource);
+                Bitmap shadow = BitmapUtil.createBitmapShadow(source, source.getHeight());
+                mIvShadow.setImageBitmap(shadow);
+            }
+        });
     }
 }
