@@ -1,4 +1,4 @@
-package com.loosu.picreflectiondemo;
+package com.loosu.picreflectiondemo.ui.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.loosu.picreflectiondemo.R;
 import com.loosu.picreflectiondemo.utils.BitmapUtil;
 import com.loosu.picreflectiondemo.utils.ViewUtil;
 

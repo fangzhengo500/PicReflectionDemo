@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">PicReflectionDemo</string>
+
+    <string name="shadow_bmp">阴影图片</string>
+    <string name="inverted_bmp">倒影图片</string>
+    <string name="reflect_layout">Reflect Layout</string>
+
     <string name="shadow_height_label">Shadow Height</string>
     <string name="shadow_start_alpha_label">Start Alpha</string>
     <string name="shadow_end_alpha_label">End Alpha</string>
-    <string name="shadow_bmp">阴影图片</string>
-    <string name="inverted_bmp">倒影图片</string>
 </resources>

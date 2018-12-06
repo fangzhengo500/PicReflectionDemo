@@ -19,9 +19,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ShadowBitmapActivity" />
+        <activity android:name=".ui.activity.ShadowBitmapActivity" />
 
-        <activity android:name=".InvertedBitmapActivity" />
+        <activity android:name=".ui.activity.InvertedBitmapActivity" />
+        <activity android:name=".ui.activity.ReflectLayoutActivity" />
     </application>
 
 </manifest>

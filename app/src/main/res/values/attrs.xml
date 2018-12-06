@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ReflectLayout_Layout">
+        <attr name="reflect" format="boolean" />
+        <attr name="reflect_height" format="reference|dimension" />
+    </declare-styleable>
+</resources>
