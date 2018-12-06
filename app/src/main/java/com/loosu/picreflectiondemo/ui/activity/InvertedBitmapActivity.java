@@ -120,6 +120,7 @@ public class InvertedBitmapActivity extends AppCompatActivity implements SeekBar
                 updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress(), mSeekSpace.getProgress() - mSeekSpace.getMax() / 2);
                 mTvEndAlpha.setText(String.valueOf(progress));
                 break;
+
             case R.id.seek_space:
                 updateImageShadow(mSeekShadowHeight.getProgress(), mSeekStartAlpha.getProgress(), mSeekEndAlpha.getProgress(), mSeekSpace.getProgress() - mSeekSpace.getMax() / 2);
                 mTvSpace.setText(String.valueOf(mSeekSpace.getProgress() - mSeekSpace.getMax() / 2));
