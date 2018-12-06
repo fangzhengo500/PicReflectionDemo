@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#70000000"
+    android:clickable="true"
     tools:showIn="@layout/activity_main">
 
     <LinearLayout
@@ -27,7 +28,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="7"
-            android:max="1500" />
+            android:max="1500"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
 
         <TextView
             android:id="@+id/tv_shadow_height"

@@ -4,6 +4,9 @@ import android.graphics.Bitmap;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -45,7 +48,11 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         mIvSource.post(new Runnable() {
             @Override
             public void run() {
-                updateImageShadow(mIvSource.getHeight() / 4);
+                int shadowHeight = mIvSource.getHeight() / 4;
+                updateImageShadow(shadowHeight);
+
+                mSeekShadowHeight.setProgress(shadowHeight);
+                mTvShadowHeight.setText(String.valueOf(shadowHeight));
             }
         });
     }
@@ -67,6 +74,18 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
             @Override
             public void onDrawerClosed(View drawerView) {
                 mLayoutDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+            }
+        });
+        // 点击除开侧边栏的区域会收起侧边栏。
+        mLayoutDrawer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mLayoutDrawer.closeDrawers();
+                        break;
+                }
+                return false;
             }
         });
     }
