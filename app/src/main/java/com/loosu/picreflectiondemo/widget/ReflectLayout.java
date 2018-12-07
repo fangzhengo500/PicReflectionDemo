@@ -47,6 +47,8 @@ public class ReflectLayout extends FrameLayout {
                 boolean reflect = layoutParams.reflectAble;         // 开启阴影效果
                 float reflectHeight = layoutParams.reflectHeight;   // 阴影高度
                 float reflectSpace = layoutParams.reflectSpace;     // 阴影间隔
+                int startAlpha = (int) Math.max(0, Math.min(layoutParams.reflectStartAlpha * 255, 255));    // 阴影起始透明度
+                int endAlpha = (int) Math.max(0, Math.min(layoutParams.reflectEndAlpha * 255, 255));        // 阴影结束透明度
 
                 float viewLeft = childAt.getLeft() + childAt.getTranslationX();         // view 的视图位置 left
                 float viewBottom = childAt.getBottom() + childAt.getTranslationY();     // view 的视图位置 bottom
@@ -62,7 +64,7 @@ public class ReflectLayout extends FrameLayout {
 
                     // 绘制阴影效果
                     Bitmap source = ViewUtil.getBitmapByView(childAt);
-                    Bitmap shadow = BitmapUtil.createBitmapShadow(source, shadowHeight);
+                    Bitmap shadow = BitmapUtil.createBitmapShadow(source, shadowHeight, startAlpha, endAlpha);
                     if (shadow != null) {
                         canvas.drawBitmap(shadow, viewLeft, viewBottom + reflectSpace, null);
                     }
@@ -89,9 +91,13 @@ public class ReflectLayout extends FrameLayout {
     }
 
     public static class LayoutParams extends FrameLayout.LayoutParams {
+        private static final float DEFAULT_START_ALPHA = .95f;
+
         public boolean reflectAble = false;
         public float reflectHeight = 0;
         private float reflectSpace = 0;
+        private float reflectStartAlpha = DEFAULT_START_ALPHA;
+        private float reflectEndAlpha = 0f;
 
         public LayoutParams(@NonNull Context c, @Nullable AttributeSet attrs) {
             super(c, attrs);
@@ -99,7 +105,7 @@ public class ReflectLayout extends FrameLayout {
             final TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.ReflectLayout_Layout);
             reflectAble = a.getBoolean(R.styleable.ReflectLayout_Layout_reflect, false);
 
-            /**
+            /*
              *  <attr name="reflect_height" format="reference|dimension">
              *      <flag name="match_parent" value="-1" />
              *  </attr>
@@ -108,6 +114,8 @@ public class ReflectLayout extends FrameLayout {
              */
             reflectHeight = a.getLayoutDimension(R.styleable.ReflectLayout_Layout_reflect_height, MATCH_PARENT);
             reflectSpace = a.getDimension(R.styleable.ReflectLayout_Layout_reflect_space, 0);
+            reflectStartAlpha = a.getFloat(R.styleable.ReflectLayout_Layout_reflect_start_alpha, DEFAULT_START_ALPHA);
+            reflectEndAlpha = a.getFloat(R.styleable.ReflectLayout_Layout_reflect_end_alpha, 0);
             a.recycle();
         }
 

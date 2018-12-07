@@ -6,5 +6,7 @@
             <flag name="match_parent" value="-1" />
         </attr>
         <attr name="reflect_space" format="reference|dimension" />
+        <attr name="reflect_start_alpha" format="reference|float" />
+        <attr name="reflect_end_alpha" format="reference|float" />
     </declare-styleable>
 </resources>

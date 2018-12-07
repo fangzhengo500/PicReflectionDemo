@@ -11,6 +11,7 @@
         android:layout_width="400dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
+        android:layout_marginBottom="40dp"
         android:scaleType="centerCrop"
         app:reflect="true"
         app:reflect_height="match_parent" />
