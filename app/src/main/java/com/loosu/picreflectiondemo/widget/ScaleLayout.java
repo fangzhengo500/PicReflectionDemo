@@ -36,23 +36,23 @@ public class ScaleLayout extends FrameLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-
-        int width = MeasureSpec.getSize(widthMeasureSpec);
-        int height = MeasureSpec.getSize(heightMeasureSpec);
-        if (0 == mWidthScale || 0 == mHeightScale) {
-            setMeasuredDimension(width, height);
-        } else {
-            if (width < height * mWidthScale / mHeightScale) {
-                int finalHeight = width * mHeightScale / mWidthScale;
-                setMeasuredDimension(width, finalHeight);
-                measureChildren(MeasureSpec.makeMeasureSpec(width, widthMode), MeasureSpec.makeMeasureSpec(finalHeight, heightMode));
-            } else {
-                int finalWidth = height * mWidthScale / mHeightScale;
-                setMeasuredDimension(finalWidth, height);
-                measureChildren(MeasureSpec.makeMeasureSpec(finalWidth, widthMode), MeasureSpec.makeMeasureSpec(height, heightMode));
-            }
-        }
+//        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+//
+//        int width = MeasureSpec.getSize(widthMeasureSpec);
+//        int height = MeasureSpec.getSize(heightMeasureSpec);
+//        if (0 == mWidthScale || 0 == mHeightScale) {
+//            setMeasuredDimension(width, height);
+//        } else {
+//            if (width < height * mWidthScale / mHeightScale) {
+//                int finalHeight = width * mHeightScale / mWidthScale;
+//                setMeasuredDimension(width, finalHeight);
+//                measureChildren(MeasureSpec.makeMeasureSpec(width, widthMode), MeasureSpec.makeMeasureSpec(finalHeight, heightMode));
+//            } else {
+//                int finalWidth = height * mWidthScale / mHeightScale;
+//                setMeasuredDimension(finalWidth, height);
+//                measureChildren(MeasureSpec.makeMeasureSpec(finalWidth, widthMode), MeasureSpec.makeMeasureSpec(height, heightMode));
+//            }
+//        }
     }
 }

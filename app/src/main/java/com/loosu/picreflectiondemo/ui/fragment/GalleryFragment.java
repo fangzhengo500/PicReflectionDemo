@@ -59,7 +59,14 @@ public class GalleryFragment extends Fragment {
     }
 
     private void initListener(View view, Bundle savedInstanceState) {
-
+        mViewList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                if (newState ==RecyclerView.SCROLL_STATE_IDLE) {
+                    recyclerView.getAdapter().notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     private static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {

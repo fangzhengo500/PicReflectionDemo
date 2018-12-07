@@ -2,8 +2,10 @@
 <com.loosu.picreflectiondemo.widget.ReflectLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="#f66"
     tools:ignore="MissingPrefix">
 
     <com.loosu.picreflectiondemo.widget.ScaleLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -11,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="80dp"
         android:background="@color/colorPrimary"
         app:reflect="true"
         app:reflect_height="match_parent">
@@ -24,12 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop" />
-
-            <View
-                android:id="@+id/view_shade"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#7000" />
 
             <ImageView
                 android:id="@+id/btn_play"
