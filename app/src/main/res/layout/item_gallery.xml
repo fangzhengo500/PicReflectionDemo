@@ -2,18 +2,50 @@
 <com.loosu.picreflectiondemo.widget.ReflectLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingPrefix">
 
-    <ImageView
-        android:id="@+id/iv_cover"
-        android:layout_width="400dp"
-        android:layout_height="300dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:scaleType="centerCrop"
+    <com.loosu.picreflectiondemo.widget.ScaleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scale_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"
         app:reflect="true"
-        app:reflect_height="match_parent" />
+        app:reflect_height="match_parent">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <View
+                android:id="@+id/view_shade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#7000" />
+
+            <ImageView
+                android:id="@+id/btn_play"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/btn_bofang_default" />
+        </FrameLayout>
+
+        <include
+            android:id="@+id/layout_item_toolbar"
+            layout="@layout/layout_main_category_movie_toolbar" />
+
+        <include
+            android:id="@+id/layout_item_bottom"
+            layout="@layout/layout_main_category_movie_info" />
+    </com.loosu.picreflectiondemo.widget.ScaleLayout>
 </com.loosu.picreflectiondemo.widget.ReflectLayout>
 

@@ -53,7 +53,11 @@ public class BitmapUtil {
      * @return 阴影图片
      */
     @Nullable
-    public static Bitmap createBitmapShadow(@NonNull Bitmap sourceBmp, int shadowHeight, int startAlpha, int endAlpha) {
+    public static Bitmap createBitmapShadow(@Nullable Bitmap sourceBmp, int shadowHeight, int startAlpha, int endAlpha) {
+        if (sourceBmp == null){
+            return null;
+        }
+
         int x = 0;
         int y = Math.max(0, Math.min(sourceBmp.getHeight() - shadowHeight, sourceBmp.getHeight())); // 0 <= y <= bmp.getHeight;
         int width = sourceBmp.getWidth();

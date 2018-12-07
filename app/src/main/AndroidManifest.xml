@@ -22,7 +22,10 @@
         <activity android:name=".ui.activity.ShadowBitmapActivity" />
 
         <activity android:name=".ui.activity.InvertedBitmapActivity" />
-        <activity android:name=".ui.activity.ReflectLayoutActivity" />
+        <activity
+            android:name=".ui.activity.ReflectLayoutActivity"
+            android:screenOrientation="sensorLandscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>

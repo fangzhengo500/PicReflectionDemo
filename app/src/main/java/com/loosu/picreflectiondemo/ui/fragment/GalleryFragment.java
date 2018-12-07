@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 
 import com.leochuan.CarouselLayoutManager;
 import com.leochuan.CenterSnapHelper;
-import com.leochuan.ViewPagerLayoutManager;
 import com.loosu.picreflectiondemo.R;
 import com.loosu.picreflectiondemo.utils.ViewUtil;
 
@@ -52,7 +50,7 @@ public class GalleryFragment extends Fragment {
                         .setMaxVisibleItemCount(5)
                         .build();
                 mViewList.setLayoutManager(layoutManager);
-                mViewList.setAdapter(new MyAdapter());
+                mViewList.setAdapter(new MyAdapter(mViewList));
 
                 CenterSnapHelper snapHelper = new CenterSnapHelper();
                 snapHelper.attachToRecyclerView(mViewList);
@@ -65,10 +63,16 @@ public class GalleryFragment extends Fragment {
     }
 
     private static class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
-        private int[] pics = {
+        private final int[] pics = {
                 R.mipmap.pic2,
                 R.mipmap.pic3,
         };
+
+        private final RecyclerView mRecyclerView;
+
+        public MyAdapter(RecyclerView recyclerView) {
+            mRecyclerView = recyclerView;
+        }
 
         @NonNull
         @Override
@@ -80,6 +84,13 @@ public class GalleryFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
             holder.ivCover.setImageResource(pics[i % pics.length]);
+
+            if (mRecyclerView.getLayoutManager() instanceof CarouselLayoutManager) {
+                int currentPosition = ((CarouselLayoutManager) mRecyclerView.getLayoutManager()).getCurrentPosition();
+                holder.btnPlay.setVisibility(currentPosition == i ? View.VISIBLE : View.GONE);
+                holder.layoutToolbar.setVisibility(currentPosition == i ? View.VISIBLE : View.GONE);
+                holder.layoutBottom.setVisibility(currentPosition == i ? View.VISIBLE : View.GONE);
+            }
         }
 
         @Override
@@ -90,10 +101,16 @@ public class GalleryFragment extends Fragment {
 
     private static class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView ivCover;
+        View btnPlay;
+        View layoutToolbar;
+        View layoutBottom;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             ivCover = itemView.findViewById(R.id.iv_cover);
+            btnPlay = itemView.findViewById(R.id.btn_play);
+            layoutToolbar = itemView.findViewById(R.id.layout_item_toolbar);
+            layoutBottom = itemView.findViewById(R.id.layout_item_bottom);
         }
     }
 }

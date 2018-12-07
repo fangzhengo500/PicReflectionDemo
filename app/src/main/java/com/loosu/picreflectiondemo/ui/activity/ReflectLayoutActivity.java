@@ -27,8 +27,8 @@ public class ReflectLayoutActivity extends AppCompatActivity {
     private static class MyAdapter extends FragmentPagerAdapter {
 
         private Fragment[] mFragments = {
-                new ReflectLayoutFragment(),
                 new GalleryFragment(),
+                new ReflectLayoutFragment(),
         };
 
         public MyAdapter(FragmentManager fm) {
