@@ -12,6 +12,10 @@ import android.graphics.Shader;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+/**
+ * github -> https://github.com/fangzhengo500/PicReflectionDemo
+ * by LooSu
+ */
 public class BitmapUtil {
     public static Bitmap createInvertedBitmap(Bitmap sourceBmp, int shadowHeight) {
         return createInvertedBitmap(sourceBmp, shadowHeight, 255, 0);

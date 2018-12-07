@@ -5,6 +5,10 @@ import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+/**
+ * github -> https://github.com/fangzhengo500/PicReflectionDemo
+ * by LooSu
+ */
 public class ViewUtil {
     private ViewUtil() {
         // util no instance.

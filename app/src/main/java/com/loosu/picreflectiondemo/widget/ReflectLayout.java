@@ -7,7 +7,6 @@ import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -16,6 +15,10 @@ import com.loosu.picreflectiondemo.R;
 import com.loosu.picreflectiondemo.utils.BitmapUtil;
 import com.loosu.picreflectiondemo.utils.ViewUtil;
 
+/**
+ * github -> https://github.com/fangzhengo500/PicReflectionDemo
+ * by LooSu
+ */
 public class ReflectLayout extends FrameLayout {
     private static final String TAG = "ReflectLayout";
 
